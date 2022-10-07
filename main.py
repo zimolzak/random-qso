@@ -47,17 +47,17 @@ class RandomOperator:
             r, s, t, r, s, t
         )
 
+    def intro_outro(self):
+        full = MY_CALL + ' DE ' + self.call
+        return choice(['BK', full])
+        pass
+
     def __str__(self):
         all_features = [self.call, self.qth, self.name, self.rig, self.wx, self.skcc, self.rst]
         return str(all_features)
 
 
-def intro(operator: RandomOperator):
-    full = MY_CALL + ' DE ' + operator.call
-    return choice(['BK', full])
-
-
 if __name__ == '__main__':
     op = RandomOperator()
-    print(intro(op))
+    print(op.intro_outro())
     print(op)
