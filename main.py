@@ -91,7 +91,7 @@ class RandomQso:
         )
 
     def __str__(self):
-        all_features = [self.intro(), self.qth, self.name, self.rig, self.wx, self.skcc, self.rst]
+        all_features = [self.intro(), self.rst, self.name, self.qth, self.wx, self.rig, self.skcc]
         return str(all_features)
     # rst === name qth skcc
     # gm name nice to meet u === wx === rig
@@ -99,6 +99,5 @@ class RandomQso:
 
 if __name__ == '__main__':
     qso = RandomQso(my_call='KI5XYZ', my_name='Andy')
-    print(qso)
     print(qso.first())
     print(qso.second())
