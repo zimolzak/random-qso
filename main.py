@@ -57,6 +57,7 @@ class RandomQso:
             choice(['rst ', 'rst is ', '']),
             r, s, t, r, s, t
         )
+        self.good_morning = choice([' gm ', ' ga ', ' ge '])
 
     def intro_outro(self):
         # class method so it can be different each time
@@ -67,7 +68,7 @@ class RandomQso:
     def second(self):
         return (
             self.intro_outro() +
-            ' gm ' + self.my_name + ' nice to meet u = ' +
+            self.good_morning + self.my_name + ' nice to meet u = ' +
             self.wx + ' = ' +
             self.rig + ' = ' +
             self.intro_outro()
