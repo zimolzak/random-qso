@@ -17,9 +17,16 @@ class RandomOperator:
             randint(1000, 25000),
             choice(['C', 'T', ''])
         )
+        r = randint(4, 5)
+        s = randint(5, 9)
+        t = choice(['n', '9'])
+        self.rst = 'UR %s%i%i%s %i%i%s' % (
+            choice(['rst ', 'rst is ', '']),
+            r, s, t, r, s, t
+        )
 
     def __str__(self):
-        all_features = [self.call, self.qth, self.name, self.rig, self.wx, self.skcc]
+        all_features = [self.call, self.qth, self.name, self.rig, self.wx, self.skcc, self.rst]
         return str(all_features)
 
 
