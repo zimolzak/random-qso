@@ -8,8 +8,9 @@ class RandomOperator:
     def __init__(self):
         self.call = 'KG4ABC'
         self.qth = 'Phoenix Phoenix AZ AZ'
-        self.name = 'Phil'
-        self.rig = 'IC 7300'
+        self.name = choice('John Phil Bob Mary Ali Alex Tom Dennis Lou Leo Larry Ann'.split())
+        self.rig = choice(['IC 7300', 'Kenwood TS 940S', 'TS 890S', 'Yaesu FT 1000',
+                           'FT DX 101D', 'FT DX 10', 'Yaesu FT 101'])
         self.wx = 'rainy 65 deg'
         self.skcc = 'skcc %s%s%i%s' % (
             choice(['nr ', '']),
