@@ -44,11 +44,12 @@ class RandomQso:
             choice([' es', '']),
             randint(35, 99)
         )
-        self.skcc = 'skcc %s%s%i%s' % (
+        skcc_stub = str(randint(1000, 25000)) + choice(['C', 'T', ''])
+        self.skcc = 'skcc %s%s%s %s' % (
             choice(['nr ', '']),
             choice(['is ', '']),
-            randint(1000, 25000),
-            choice(['C', 'T', ''])
+            skcc_stub,
+            skcc_stub
         )
         r = randint(4, 5)
         s = randint(5, 9)
@@ -90,6 +91,15 @@ class RandomQso:
                 self.outro_over()
         )
 
+    def third(self):
+        return(
+            self.intro() +
+            ' R R FB ' + self.my_name +
+            choice([' = ', ' ']) +
+            self.skcc + ' QSL?' +
+            self.outro_over()
+        )
+
     def __str__(self):
         all_features = [self.intro(), self.rst, self.name, self.qth, self.wx, self.rig, self.skcc]
         return str(all_features)
@@ -101,3 +111,4 @@ if __name__ == '__main__':
     qso = RandomQso(my_call='KI5XYZ', my_name='Andy')
     print(qso.first())
     print(qso.second())
+    print(qso.third())
