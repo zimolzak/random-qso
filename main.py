@@ -59,37 +59,39 @@ class RandomQso:
         )
         self.good_morning = choice([' gm ', ' ga ', ' ge '])
 
-    def intro_outro(self):
+    def intro(self):
         # class method so it can be different each time
         full = self.my_call + ' DE ' + self.call
         return choice(['BK', full])
         pass
 
-    def over(self):
-        return choice([' k', ' k', ' kn'])
+    def outro_over(self):
+        outro_stub = self.intro()
+        if outro_stub == 'BK':
+            return ' BK'
+        else:
+            return ' = ' + outro_stub + choice([' k', ' k', ' kn'])
 
     def first(self):
         return(
-            self.intro_outro() + ' ' +
-            self.rst + ' = ' +
-            self.name + ' = ' +
-            self.qth + ' = ' +
-            self.intro_outro() +
-            self.over()
+                self.intro() + ' ' +
+                self.rst + ' = ' +
+                self.name + ' = ' +
+                self.qth +
+                self.outro_over()
         )
 
     def second(self):
         return (
-            self.intro_outro() +
-            self.good_morning + self.my_name + ' nice to meet u = ' +
-            self.wx + ' = ' +
-            self.rig + ' = ' +
-            self.intro_outro() +
-            self.over()
+                self.intro() +
+                self.good_morning + self.my_name + ' nice to meet u = ' +
+                self.wx + ' = ' +
+                self.rig +
+                self.outro_over()
         )
 
     def __str__(self):
-        all_features = [self.intro_outro(), self.qth, self.name, self.rig, self.wx, self.skcc, self.rst]
+        all_features = [self.intro(), self.qth, self.name, self.rig, self.wx, self.skcc, self.rst]
         return str(all_features)
     # rst === name qth skcc
     # gm name nice to meet u === wx === rig
