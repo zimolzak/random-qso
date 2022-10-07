@@ -2,16 +2,16 @@ from random import choice
 from random import randint
 from string import ascii_uppercase
 
-MY_CALL = 'KI5XYZ'
-
 
 def random_suffix():
     uppercase_plus_null = list(ascii_uppercase) + ['']
     return choice(ascii_uppercase) + choice(ascii_uppercase) + choice(uppercase_plus_null)
 
 
-class RandomOperator:
-    def __init__(self):
+class RandomQso:
+    def __init__(self, my_call, my_name):
+        self.my_call = my_call
+        self.my_name = my_name
         self.call = '%s%s%s' % (
             choice('KG KI W K KA'.split()),
             randint(0, 9),
@@ -59,18 +59,28 @@ class RandomOperator:
         )
 
     def intro_outro(self):
-        full = MY_CALL + ' DE ' + self.call
+        # class method so it can be different each time
+        full = self.my_call + ' DE ' + self.call
         return choice(['BK', full])
         pass
 
+    def second(self):
+        return (
+            self.intro_outro() +
+            ' gm ' + self.my_name + ' nice to meet u = ' +
+            self.wx + ' = ' +
+            self.rig + ' = ' +
+            self.intro_outro()
+        )
+
     def __str__(self):
-        all_features = [self.call, self.qth, self.name, self.rig, self.wx, self.skcc, self.rst]
+        all_features = [self.intro_outro(), self.qth, self.name, self.rig, self.wx, self.skcc, self.rst]
         return str(all_features)
     # rst === name qth skcc
     # gm name nice to meet u === wx === rig
 
 
 if __name__ == '__main__':
-    op = RandomOperator()
-    print(op.intro_outro())
-    print(op)
+    qso = RandomQso(my_call='KI5XYZ', my_name='Andy')
+    print(qso)
+    print(qso.second())
