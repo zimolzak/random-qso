@@ -24,11 +24,22 @@ class RandomOperator:
                              ['Asheville', 'NC'],
                              ['Austin', 'TX'],
                              ['Omaha', 'NE']])
-        self.qth = '%s %s %s %s' % (city_state[0], city_state[0], city_state[1], city_state[1])
-        self.name = choice('John Phil Bob Mary Ali Alex Tom Dennis Lou Leo Larry Ann'.split())
-        self.rig = choice(['IC 7300', 'Kenwood TS 940S', 'TS 890S', 'Yaesu FT 1000',
+        self.qth = 'QTH%s %s %s %s %s' % (
+            choice([' is', '']),
+            city_state[0], city_state[0], city_state[1], city_state[1]
+        )
+        name_once = choice('John Phil Bob Mary Ali Alex Tom Dennis Lou Leo Larry Ann'.split())
+        self.name = '%s %s %s' % (
+            choice(['name is', 'name', 'op']),
+            name_once,
+            name_once
+        )
+        self.rig = 'rig ' +\
+                   choice(['is ', '']) +\
+                   choice(['IC 7300', 'Kenwood TS 940S', 'TS 890S', 'Yaesu FT 1000',
                            'FT DX 101D', 'FT DX 10', 'Yaesu FT 101'])
-        self.wx = '%s%s %i deg' % (
+        self.wx = 'WX %s%s%s %i deg' % (
+            choice(['', 'is ']),
             choice('rainy cloudy clr'.split()),
             choice([' es', '']),
             randint(35, 99)
@@ -55,6 +66,8 @@ class RandomOperator:
     def __str__(self):
         all_features = [self.call, self.qth, self.name, self.rig, self.wx, self.skcc, self.rst]
         return str(all_features)
+    # rst === name qth skcc
+    # gm name nice to meet u === wx === rig
 
 
 if __name__ == '__main__':
