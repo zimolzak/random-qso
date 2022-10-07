@@ -65,13 +65,27 @@ class RandomQso:
         return choice(['BK', full])
         pass
 
+    def over(self):
+        return choice([' k', ' k', ' kn'])
+
+    def first(self):
+        return(
+            self.intro_outro() + ' ' +
+            self.rst + ' = ' +
+            self.name + ' = ' +
+            self.qth + ' = ' +
+            self.intro_outro() +
+            self.over()
+        )
+
     def second(self):
         return (
             self.intro_outro() +
             self.good_morning + self.my_name + ' nice to meet u = ' +
             self.wx + ' = ' +
             self.rig + ' = ' +
-            self.intro_outro()
+            self.intro_outro() +
+            self.over()
         )
 
     def __str__(self):
@@ -84,4 +98,5 @@ class RandomQso:
 if __name__ == '__main__':
     qso = RandomQso(my_call='KI5XYZ', my_name='Andy')
     print(qso)
+    print(qso.first())
     print(qso.second())
