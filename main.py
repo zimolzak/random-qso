@@ -88,7 +88,7 @@ class RandomQso:
             return ' = ' + outro_stub + choice([' k', ' k', ' kn'])
 
     def first(self):
-        return(
+        return (
                 self.intro() + ' ' +
                 self.rst + ' = ' +
                 self.name + ' = ' +
