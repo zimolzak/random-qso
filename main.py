@@ -2,9 +2,15 @@ from random import choice
 from random import randint
 from string import ascii_uppercase
 
+INCLUDE_CANADA = False
 ARRL_SECTIONS = []
 with open('arrl-sections.csv') as fh:
     for line in fh:
+        if 'CANADA' in line:
+            if INCLUDE_CANADA:
+                continue
+            else:
+                break
         fields = line.replace('\n', '').split(',')
         ARRL_SECTIONS.append(fields[1])
 
