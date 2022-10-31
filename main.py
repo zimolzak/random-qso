@@ -3,6 +3,13 @@ from random import randint
 from string import ascii_uppercase
 
 
+ARRL_SECTIONS = []
+with open('arrl-sections.csv') as fh:
+    for line in fh:
+        fields = line.split(',')
+        ARRL_SECTIONS.append(fields[1])
+
+
 def random_suffix():
     uppercase_plus_null = list(ascii_uppercase) + ['']
     return choice(ascii_uppercase) + choice(ascii_uppercase) + choice(uppercase_plus_null)
@@ -100,6 +107,18 @@ class RandomQso:
             self.outro_over()
         )
 
+    def arrl_ss(self):
+        ser = randint(100, 9999)
+        pre = choice("Q A B U M S".split())
+        ck = randint(10, 99)
+        sec = choice(ARRL_SECTIONS)  # In theory should match the state but whatever
+        return(
+            "%s de %s %s %s %s %s %s" % (
+                self.my_call, self.call,
+                ser, pre, self.call, ck, sec
+            )
+        )
+
     def __str__(self):
         all_features = [self.intro(), self.rst, self.name, self.qth, self.wx, self.rig, self.skcc]
         return str(all_features)
@@ -112,3 +131,4 @@ if __name__ == '__main__':
     print(qso.first())
     print(qso.second())
     print(qso.third())
+    print(qso.arrl_ss())
