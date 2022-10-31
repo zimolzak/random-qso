@@ -67,6 +67,13 @@ class RandomQso:
         )
         self.good_morning = choice([' gm ', ' ga ', ' ge '])
 
+        # ARRL Sweepstakes elements
+
+        self.ser = randint(100, 9999)
+        self.pre = choice("Q A B U M S".split())
+        self.ck = randint(10, 99)
+        self.sec = choice(ARRL_SECTIONS)  # In theory should match the state but whatever
+
     def intro(self):
         # class method so it can be different each time
         full = self.my_call + ' DE ' + self.call
@@ -99,25 +106,19 @@ class RandomQso:
         )
 
     def third(self):
-        return(
-            self.intro() +
-            ' R R FB ' + self.my_name +
-            choice([' = ', ' ']) +
-            self.skcc + ' QSL?' +
-            self.outro_over()
+        return (
+                self.intro() +
+                ' R R FB ' + self.my_name +
+                choice([' = ', ' ']) +
+                self.skcc + ' QSL?' +
+                self.outro_over()
         )
 
-    def arrl_ss(self):
-        ser = randint(100, 9999)
-        pre = choice("Q A B U M S".split())
-        ck = randint(10, 99)
-        sec = choice(ARRL_SECTIONS)  # In theory should match the state but whatever
-        return(
-            "%s de %s %s %s %s %s %s" % (
-                self.my_call, self.call,
-                ser, pre, self.call, ck, sec
-            )
-        )
+    def arrl_ss_short(self):
+        return "%s %s %s %s %s" % (self.ser, self.pre, self.call, self.ck, self.sec)
+
+    def arrl_ss_long(self):
+        return "%s de %s %s" % (self.my_call, self.call, self.arrl_ss_short())
 
     def __str__(self):
         all_features = [self.intro(), self.rst, self.name, self.qth, self.wx, self.rig, self.skcc]
@@ -131,4 +132,5 @@ if __name__ == '__main__':
     print(qso.first())
     print(qso.second())
     print(qso.third())
-    print(qso.arrl_ss())
+    print(qso.arrl_ss_long())
+    print(qso.arrl_ss_short())
