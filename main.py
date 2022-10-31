@@ -2,7 +2,6 @@ from random import choice
 from random import randint
 from string import ascii_uppercase
 
-
 ARRL_SECTIONS = []
 with open('arrl-sections.csv') as fh:
     for line in fh:
@@ -10,7 +9,7 @@ with open('arrl-sections.csv') as fh:
         ARRL_SECTIONS.append(fields[1])
 
 
-def random_suffix(p_two_char=1/26):
+def random_suffix(p_two_char=1 / 26):
     n_null = round(-26 * p_two_char / (p_two_char - 1))
     uppercase_plus_null = list(ascii_uppercase) + [''] * n_null
     return choice(ascii_uppercase) + choice(ascii_uppercase) + choice(uppercase_plus_null)
@@ -23,7 +22,7 @@ class RandomQso:
         self.call = '%s%s%s' % (
             choice('KG KI W K KA'.split()),
             randint(0, 9),
-            random_suffix(p_two_char=1/3)
+            random_suffix(p_two_char=1 / 3)
         )
         city_state = choice([['Phoenix', 'AZ'],
                              ['Troy', 'MI'],
@@ -42,8 +41,8 @@ class RandomQso:
             name_once,
             name_once
         )
-        self.rig = 'rig ' +\
-                   choice(['is ', '']) +\
+        self.rig = 'rig ' + \
+                   choice(['is ', '']) + \
                    choice(['IC 7300', 'Kenwood TS 940S', 'TS 890S', 'Yaesu FT 1000',
                            'FT DX 101D', 'FT DX 10', 'Yaesu FT 101'])
         self.wx = 'WX %s%s%s %i deg' % (
