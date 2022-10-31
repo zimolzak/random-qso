@@ -10,8 +10,9 @@ with open('arrl-sections.csv') as fh:
         ARRL_SECTIONS.append(fields[1])
 
 
-def random_suffix():
-    uppercase_plus_null = list(ascii_uppercase) + ['']
+def random_suffix(p_two_char=1/26):
+    n_null = round(-26 * p_two_char / (p_two_char - 1))
+    uppercase_plus_null = list(ascii_uppercase) + [''] * n_null
     return choice(ascii_uppercase) + choice(ascii_uppercase) + choice(uppercase_plus_null)
 
 
@@ -22,7 +23,7 @@ class RandomQso:
         self.call = '%s%s%s' % (
             choice('KG KI W K KA'.split()),
             randint(0, 9),
-            random_suffix()
+            random_suffix(p_two_char=1/3)
         )
         city_state = choice([['Phoenix', 'AZ'],
                              ['Troy', 'MI'],
