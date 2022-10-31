@@ -6,7 +6,7 @@ from string import ascii_uppercase
 ARRL_SECTIONS = []
 with open('arrl-sections.csv') as fh:
     for line in fh:
-        fields = line.split(',')
+        fields = line.replace('\n', '').split(',')
         ARRL_SECTIONS.append(fields[1])
 
 
@@ -17,7 +17,7 @@ def random_suffix(p_two_char=1/26):
 
 
 class RandomQso:
-    def __init__(self, my_call, my_name):
+    def __init__(self, my_call='KI5XYZ', my_name=''):
         self.my_call = my_call
         self.my_name = my_name
         self.call = '%s%s%s' % (
